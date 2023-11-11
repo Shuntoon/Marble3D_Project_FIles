@@ -1,0 +1,6 @@
+CSGBox3D
+Node3D
+GraphNode
+MeshInstance3D
+CollisionShape3D
+RigidBody3D

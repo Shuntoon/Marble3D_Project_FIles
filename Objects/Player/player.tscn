@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu6csgumns604"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_55v3s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pii2"]
+
+[node name="Player" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_55v3s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_8pii2")
