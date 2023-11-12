@@ -1,15 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu6csgumns604"]
+[gd_scene load_steps=4 format=3 uid="uid://bu6csgumns604"]
+
+[ext_resource type="Script" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_55v3s"]
+radius = 0.123988
 
 [sub_resource type="SphereMesh" id="SphereMesh_8pii2"]
 
 [node name="Player" type="Node3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Marble" type="RigidBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marble"]
 shape = SubResource("SphereShape3D_55v3s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marble"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("SphereMesh_8pii2")
+
+[node name="CameraContainer" type="Node3D" parent="."]
+script = ExtResource("1_d1vl8")
+
+[node name="HRotation" type="Node3D" parent="CameraContainer"]
+
+[node name="VRotation" type="Node3D" parent="CameraContainer/HRotation"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraContainer/HRotation/VRotation"]
+spring_length = 1.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer/HRotation/VRotation/SpringArm3D"]
+current = true

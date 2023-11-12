@@ -1,5 +1,7 @@
-CSGBox3D
+Camera3D
+SpringArm3D
 Node3D
+CSGBox3D
 GraphNode
 MeshInstance3D
 CollisionShape3D
