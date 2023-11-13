@@ -7,6 +7,7 @@ extends Node3D
 @export var v_sensitivity : float = 0.1
 @export var h_acceleration : float = 15.0
 @export var v_acceleration : float = 15.0
+@export var smooth_camera_tolerance : float = .3
 
 var camrot_h : float = 0.0
 var camrot_v : float = 0.0
@@ -22,7 +23,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
-	global_position = lerp(global_position, marble.get_node("MeshInstance3D").global_position,.3)
+	global_position = lerp(global_position, marble.get_node("MeshInstance3D").global_position,smooth_camera_tolerance)
 	
 	camrot_v = clamp(camrot_v, cam_v_min, cam_v_max)
 	

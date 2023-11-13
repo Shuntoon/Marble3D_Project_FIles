@@ -1,8 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699753664
-icon.svg::CompressedTexture2D::4818735806840309104::1699723850::1699723854::1::::<><>::
-::res://Levels/::1699728294
-level_1.tscn::PackedScene::955475038455732493::1699728294::0::1::::<><>::
+::res://::1699888762
+icon.svg::CompressedTexture2D::4818735806840309104::1699723850::1699889358::1::::<><>::
+::res://Levels/::1699889339
+level_1.tscn::PackedScene::955475038455732493::1699889339::0::1::::<><>::uid://bu6csgumns604::::res://Objects/Player/player.tscn
 ::res://Objects/::1699728294
-::res://Objects/Player/::1699728294
-player.tscn::PackedScene::3854347191704953675::1699728294::0::1::::<><>::
+::res://Objects/Player/::1699889339
+Camera.gd::GDScript::-1::1699888485::0::1::::<>Node3D<>::
+player.tscn::PackedScene::3854347191704953675::1699889339::0::1::::<><>::res://Objects/Player/Camera.gd<>res://Objects/Player/Marble.gd
+Marble.gd::GDScript::-1::1699889333::0::1::::<>RigidBody3D<>::

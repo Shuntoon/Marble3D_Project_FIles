@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu6csgumns604"]
+[gd_scene load_steps=8 format=3 uid="uid://bu6csgumns604"]
 
 [ext_resource type="Script" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
+[ext_resource type="Script" path="res://Objects/Player/Marble.gd" id="1_hjpva"]
+[ext_resource type="Texture2D" uid="uid://cawh40fx4qkcu" path="res://icon.svg" id="2_qcvt7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qcqbx"]
+bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_55v3s"]
 radius = 0.123988
 
 [sub_resource type="SphereMesh" id="SphereMesh_8pii2"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwf1o"]
+albedo_texture = ExtResource("2_qcvt7")
+
 [node name="Player" type="Node3D"]
 
 [node name="Marble" type="RigidBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_qcqbx")
+gravity_scale = 0.9
+linear_damp = 0.8
+script = ExtResource("1_hjpva")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Marble"]
 shape = SubResource("SphereShape3D_55v3s")
@@ -17,6 +29,7 @@ shape = SubResource("SphereShape3D_55v3s")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Marble"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("SphereMesh_8pii2")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwf1o")
 
 [node name="CameraContainer" type="Node3D" parent="."]
 script = ExtResource("1_d1vl8")
