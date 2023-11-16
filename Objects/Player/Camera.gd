@@ -20,7 +20,6 @@ var camrot_v : float = 0.0
 func _ready():
 	#hide mouse at start
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass # Replace with function body.
 	
 func _physics_process(delta):
 	global_position = lerp(global_position, marble.get_node("MeshInstance3D").global_position,smooth_camera_tolerance)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu6csgumns604"]
+[gd_scene load_steps=9 format=3 uid="uid://bu6csgumns604"]
 
 [ext_resource type="Script" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
 [ext_resource type="Script" path="res://Objects/Player/Marble.gd" id="1_hjpva"]
+[ext_resource type="Script" path="res://Objects/Player/GroundCheckRay.gd" id="1_mi88b"]
 [ext_resource type="Texture2D" uid="uid://cawh40fx4qkcu" path="res://icon.svg" id="2_qcvt7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qcqbx"]
@@ -17,9 +18,14 @@ albedo_texture = ExtResource("2_qcvt7")
 
 [node name="Player" type="Node3D"]
 
+[node name="GroundCheckRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.4, 0)
+script = ExtResource("1_mi88b")
+
 [node name="Marble" type="RigidBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_qcqbx")
 gravity_scale = 0.9
+can_sleep = false
 linear_damp = 0.8
 script = ExtResource("1_hjpva")
 
@@ -39,8 +45,10 @@ script = ExtResource("1_d1vl8")
 [node name="VRotation" type="Node3D" parent="CameraContainer/HRotation"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraContainer/HRotation/VRotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 spring_length = 1.5
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraContainer/HRotation/VRotation/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.48927)
 current = true

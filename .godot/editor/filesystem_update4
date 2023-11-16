@@ -1,4 +1,5 @@
 res://Objects/Player/player.tscn
-res://Objects/Player/Camera.gd
 res://Objects/Player/Marble.gd
 res://Levels/level_1.tscn
+res://Objects/Player/Camera.gd
+res://Objects/Player/GroundCheckRay.gd

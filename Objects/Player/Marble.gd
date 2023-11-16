@@ -2,10 +2,14 @@ extends RigidBody3D
 
 @export var movement_speed : float = 385.0
 @export var max_velocity : float = 7.5
+@export var jump_power : float = 6.0
 
 @onready var camera_3d = $"../CameraContainer/HRotation/VRotation/SpringArm3D/Camera3D"
 
+var grounded = false
+
 func _physics_process(delta):
+	movement(delta)
 	if linear_velocity.x > max_velocity:
 		linear_velocity.x = max_velocity
 	if linear_velocity.x < -max_velocity:
@@ -14,9 +18,10 @@ func _physics_process(delta):
 		linear_velocity.z = max_velocity
 	if linear_velocity.z < -max_velocity:
 		linear_velocity.z = -max_velocity
+		
+	if Input.is_action_just_pressed("jump") and grounded:
+		jump()
 	
-	movement(delta)
-	pass
 	
 func movement(delta):
 	var f_input = Input.get_action_raw_strength("backward") - Input.get_action_raw_strength("forward")
@@ -32,4 +37,6 @@ func movement(delta):
 	
 	apply_central_force(direction_f * movement_speed * delta)
 	apply_central_force(direction_h * movement_speed * delta)
-	pass
+	
+func jump():
+	apply_central_impulse(Vector3.UP * jump_power)
