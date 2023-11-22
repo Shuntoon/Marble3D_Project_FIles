@@ -8,9 +8,11 @@ extends Node3D
 @export var h_acceleration : float = 15.0
 @export var v_acceleration : float = 15.0
 @export var smooth_camera_tolerance : float = .3
+@export var finish_rotation_speed : float = 25
 
 var camrot_h : float = 0.0
 var camrot_v : float = 0.0
+var level_finished = false
 
 @onready var marble = $"../Marble"
 @onready var h_rotation = $HRotation
@@ -26,8 +28,14 @@ func _physics_process(delta):
 	
 	camrot_v = clamp(camrot_v, cam_v_min, cam_v_max)
 	
-	h_rotation.rotation_degrees.y = lerp(h_rotation.rotation_degrees.y, camrot_h, delta * h_acceleration)
-	v_rotation.rotation_degrees.x = lerp(v_rotation.rotation_degrees.x, camrot_v, delta * v_acceleration)
+	if level_finished:
+		h_rotation.rotation_degrees.y = lerp(h_rotation.rotation_degrees.y, h_rotation.rotation_degrees.y + 1, finish_rotation_speed * delta)
+		v_rotation.rotation_degrees.x = lerp(v_rotation.rotation_degrees.x, 0.0, 2 * delta)
+	
+	else:
+		h_rotation.rotation_degrees.y = lerp(h_rotation.rotation_degrees.y, camrot_h, delta * h_acceleration)
+		v_rotation.rotation_degrees.x = lerp(v_rotation.rotation_degrees.x, camrot_v, delta * v_acceleration)
+		
 	rotation_degrees.z = 0
 	
 	

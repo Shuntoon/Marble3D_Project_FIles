@@ -16,13 +16,14 @@ radius = 0.123988
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwf1o"]
 albedo_texture = ExtResource("2_qcvt7")
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" groups=["player"]]
 
 [node name="GroundCheckRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.4, 0)
 script = ExtResource("1_mi88b")
 
 [node name="Marble" type="RigidBody3D" parent="."]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_qcqbx")
 gravity_scale = 0.9
 can_sleep = false

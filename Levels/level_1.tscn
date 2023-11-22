@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=6 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
+[ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,3 +33,6 @@ environment = SubResource("Environment_bi56o")
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 use_collision = true
 size = Vector3(12.3692, 0.0833458, 18.6034)
+
+[node name="FinishPoint" parent="." instance=ExtResource("2_i4n55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)
