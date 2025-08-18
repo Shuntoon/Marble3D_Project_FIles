@@ -1,3 +1,7 @@
 res://Levels/level_1.tscn
+res://Objects/LevelManager/level_manager.gd
+res://Objects/FinishPoint/finish_point.gd
+res://GUI/YouWinScreen/you_win_screen.gd
 res://Objects/Player/player.tscn
 res://Objects/FinishPoint/finish_point.tscn
+res://GUI/YouWinScreen/you_win_screen.tscn

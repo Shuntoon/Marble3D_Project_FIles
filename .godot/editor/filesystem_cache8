@@ -1,20 +1,24 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1755451583
+::res://::1755540011
 icon.svg::CompressedTexture2D::4818735806840309104::1699727450::1699893966::1::::<><>::
 ::res://Art/::1700627965
 ::res://Art/Meshes/::1700628089
 FinishPad.glb::PackedScene::7432116929113265498::1700628089::1700628089::1::::<><>::
-::res://Levels/::1755442437
-level_1.tscn::PackedScene::955475038455732493::1755442437::0::1::::<><>::uid://bu6csgumns604::::res://Objects/Player/player.tscn<>uid://cayxwk30vhqju::::res://Objects/FinishPoint/finish_point.tscn
-::res://Misc/::1755451592
-::res://Misc/Fonts/::1755451650
-FOT-NewRodin Pro EB.otf::FontFile::8522015460550803596::1700023668::1755451652::1::::<><>::
-::res://Objects/::1700627667
-::res://Objects/FinishPoint/::1755442437
-finish_point.gd::GDScript::-1::1700628089::0::1::::<>Node3D<>::
-finish_point.tscn::PackedScene::4823822781435440814::1755442437::0::1::::<><>::res://Objects/FinishPoint/finish_point.gd<>uid://dd5f46iuo73pm::::res://Art/Meshes/FinishPad.glb
-::res://Objects/Player/::1755442437
+::res://GUI/::1755457726
+::res://GUI/YouWinScreen/::1755539991
+you_win_screen.gd::GDScript::-1::1755539991::0::1::::<>Control<>::
+you_win_screen.tscn::PackedScene::2842818724833179066::1755539918::0::1::::<><>::res://GUI/YouWinScreen/you_win_screen.gd
+::res://Levels/::1755539998
+level_1.tscn::PackedScene::955475038455732493::1755539998::0::1::::<><>::uid://bu6csgumns604::::res://Objects/Player/player.tscn<>uid://cayxwk30vhqju::::res://Objects/FinishPoint/finish_point.tscn<>uid://bgrc2rjf8lbos::::res://GUI/YouWinScreen/you_win_screen.tscn
+::res://Misc/::1755453634
+::res://Misc/Fonts/::1755453634
+FOT-NewRodin Pro EB.otf::FontFile::8522015460550803596::1755453634::1755453634::1::::<><>::
+::res://Objects/::1755540004
+::res://Objects/FinishPoint/::1755539998
+finish_point.gd::GDScript::-1::1755539998::0::1::::<>Node3D<>::
+finish_point.tscn::PackedScene::4823822781435440814::1755539918::0::1::::<><>::res://Objects/FinishPoint/finish_point.gd<>uid://dd5f46iuo73pm::::res://Art/Meshes/FinishPad.glb
+::res://Objects/Player/::1755539918
 Camera.gd::GDScript::-1::1700628089::0::1::::<>Node3D<>::
 GroundCheckRay.gd::GDScript::-1::1700617122::0::1::::<>RayCast3D<>::
 Marble.gd::GDScript::-1::1700628089::0::1::::<>RigidBody3D<>::
-player.tscn::PackedScene::3854347191704953675::1755442437::0::1::::<><>::res://Objects/Player/Camera.gd<>res://Objects/Player/Marble.gd<>res://Objects/Player/GroundCheckRay.gd<>uid://cawh40fx4qkcu::::res://icon.svg
+player.tscn::PackedScene::3854347191704953675::1755539918::0::1::::<><>::res://Objects/Player/Camera.gd<>res://Objects/Player/Marble.gd<>res://Objects/Player/GroundCheckRay.gd<>uid://cawh40fx4qkcu::::res://icon.svg

@@ -1,3 +1,11 @@
+Node
+CanvasLayer
+MarginContainer
+Button
+HBoxContainer
+VBoxContainer
+Label
+PanelContainer
 CollisionShape3D
 Area3D
 CSGCylinder3D
