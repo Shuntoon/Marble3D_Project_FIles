@@ -1,9 +1,10 @@
 extends Control
+class_name YouWinScreen
 
-var level_manager : LevelManager
+@onready var level_manager: Node = %LevelManager
+
 
 func _ready() -> void:
-	level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.connect("level_finished", _on_level_finished)
 
 func _on_restart_button_pressed() -> void:

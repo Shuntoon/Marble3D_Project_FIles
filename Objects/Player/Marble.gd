@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Marble
 
 @export var movement_speed : float = 385.0
 @export var max_velocity : float = 7.5

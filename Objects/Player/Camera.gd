@@ -1,4 +1,5 @@
 extends Node3D
+class_name CameraContainer
 
 @export_category("Configurables")
 @export var cam_v_max : float = 110.0

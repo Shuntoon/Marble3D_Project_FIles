@@ -1,4 +1,5 @@
 extends RayCast3D
+class_name GroundCheckRay
 
 @onready var marble = $"../Marble"
 @onready var mesh_instance_3d = $"../Marble/MeshInstance3D"

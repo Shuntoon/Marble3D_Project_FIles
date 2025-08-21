@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu6csgumns604"]
+[gd_scene load_steps=10 format=3 uid="uid://bu6csgumns604"]
 
 [ext_resource type="Script" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
 [ext_resource type="Script" path="res://Objects/Player/Marble.gd" id="1_hjpva"]
+[ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_ixp5m"]
 [ext_resource type="Script" path="res://Objects/Player/GroundCheckRay.gd" id="1_mi88b"]
 [ext_resource type="Texture2D" uid="uid://cawh40fx4qkcu" path="res://icon.svg" id="2_qcvt7"]
 
@@ -17,6 +18,7 @@ radius = 0.123988
 albedo_texture = ExtResource("2_qcvt7")
 
 [node name="Player" type="Node3D" groups=["player"]]
+script = ExtResource("1_ixp5m")
 
 [node name="GroundCheckRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.4, 0)
@@ -53,3 +55,5 @@ margin = 1.0
 [node name="Camera3D" type="Camera3D" parent="CameraContainer/HRotation/VRotation/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.48927)
 current = true
+
+[connection signal="level_finished" from="." to="." method="_on_level_finished"]
