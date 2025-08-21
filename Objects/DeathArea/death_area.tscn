@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://duv6tk13a156o"]
+
+[ext_resource type="Script" path="res://Objects/DeathArea/death_area.gd" id="1_ep8je"]
+
+[node name="DeathArea" type="Node3D"]
+script = ExtResource("1_ep8je")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

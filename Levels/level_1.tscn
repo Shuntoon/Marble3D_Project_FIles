@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=10 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
 [ext_resource type="PackedScene" uid="uid://bgrc2rjf8lbos" path="res://GUI/YouWinScreen/you_win_screen.tscn" id="3_v8hvd"]
 [ext_resource type="Script" path="res://Objects/LevelManager/level_manager.gd" id="4_30rf7"]
+[ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,6 +19,9 @@ sky = SubResource("Sky_0pcy8")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnelu"]
+size = Vector3(21.0367, 1, 38.8911)
+
 [node name="Level1" type="Node3D"]
 
 [node name="LevelManager" type="Node" parent="." groups=["level_manager"]]
@@ -27,6 +31,7 @@ script = ExtResource("4_30rf7")
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="Player" parent="Environment" instance=ExtResource("1_08apw")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
@@ -43,7 +48,15 @@ size = Vector3(12.3692, 0.0833458, 18.6034)
 [node name="FinishPoint" parent="Environment" instance=ExtResource("2_i4n55")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)
 
+[node name="DeathArea" parent="Environment" instance=ExtResource("4_c7v82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CollisionShape3D" parent="Environment/DeathArea/Area3D" index="0"]
+shape = SubResource("BoxShape3D_fnelu")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="YouWinScreen" parent="CanvasLayer" instance=ExtResource("3_v8hvd")]
 visible = false
+
+[editable path="Environment/DeathArea"]
