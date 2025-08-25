@@ -69,4 +69,7 @@ visible = false
 [node name="NotificationContainer" parent="CanvasLayer" instance=ExtResource("7_lxb2m")]
 visible = false
 
+[connection signal="checkpoint_reached" from="LevelManager" to="LevelManager" method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="LevelManager" to="CanvasLayer/NotificationContainer" method="_on_level_manager_checkpoint_reached"]
+
 [editable path="Environment/DeathArea"]

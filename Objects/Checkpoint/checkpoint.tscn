@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://edx7hn7q6wh7"]
+[gd_scene load_steps=4 format=3 uid="uid://edx7hn7q6wh7"]
 
 [ext_resource type="PackedScene" uid="uid://bya6igte3a124" path="res://Art/Meshes/Checkpoint.glb" id="1_eb3fi"]
+[ext_resource type="Script" path="res://Objects/Checkpoint/checkpoint.gd" id="1_k72al"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_emgu0"]
 radius = 0.770666
 
 [node name="Checkpoint" type="Node3D"]
+script = ExtResource("1_k72al")
 
 [node name="Checkpoint" parent="." instance=ExtResource("1_eb3fi")]
 
@@ -21,5 +23,7 @@ shape = SubResource("SphereShape3D_emgu0")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45302, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Checkpoint"]
