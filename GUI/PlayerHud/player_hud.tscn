@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsf3yjbqcr2hx"]
+
+[sub_resource type="GDScript" id="GDScript_jnn3s"]
+script/source = "extends Control
+class_name PlayerHUD
+
+@onready var coins_collected_label: Label = $CoinsCollectedLabel
+
+var level_manager : LevelManager
+
+func _ready() -> void:
+	level_manager = get_tree().get_first_node_in_group(\"level_manager\")
+	level_manager.connect(\"coin_collected\", _on_coin_collected)
+	coins_collected_label.text = \"Coins: %s/%s\" % [level_manager.coins_collected, level_manager.max_coins]
+	
+func _on_coin_collected() -> void:
+	coins_collected_label.text = \"Coins: %s/%s\" % [level_manager.coins_collected, level_manager.max_coins]
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ciapx"]
+font_size = 48
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.917647)
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = SubResource("GDScript_jnn3s")
+
+[node name="CoinsCollectedLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 55.0
+text = "Coins: 1/5"
+label_settings = SubResource("LabelSettings_ciapx")

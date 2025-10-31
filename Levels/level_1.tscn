@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=14 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
+[ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,11 +49,6 @@ size = Vector3(12.3692, 0.0833458, 18.6034)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
 
-[node name="CoinCollection" type="Node3D" parent="Environment"]
-
-[node name="Coin" parent="Environment/CoinCollection" instance=ExtResource("3_epqc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.644823, -3.1379)
-
 [node name="FinishPoint" parent="Environment" instance=ExtResource("2_i4n55")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)
 
@@ -67,6 +63,15 @@ shape = SubResource("BoxShape3D_fnelu")
 [node name="Checkpoint" parent="Environment/Checkpoints" instance=ExtResource("5_smqo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.0037)
 
+[node name="Coins" type="Node3D" parent="Environment"]
+unique_name_in_owner = true
+
+[node name="Coin" parent="Environment/Coins" instance=ExtResource("3_epqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356581, -2.64162)
+
+[node name="Coin2" parent="Environment/Coins" instance=ExtResource("3_epqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68257, 0.356581, -2.64162)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="YouWinScreen" parent="CanvasLayer" instance=ExtResource("3_v8hvd")]
@@ -75,7 +80,10 @@ visible = false
 [node name="NotificationContainer" parent="CanvasLayer" instance=ExtResource("7_lxb2m")]
 visible = false
 
+[node name="PlayerHUD" parent="CanvasLayer" instance=ExtResource("9_mqhbe")]
+
 [connection signal="checkpoint_reached" from="LevelManager" to="LevelManager" method="_on_checkpoint_reached"]
 [connection signal="checkpoint_reached" from="LevelManager" to="CanvasLayer/NotificationContainer" method="_on_level_manager_checkpoint_reached"]
+[connection signal="coin_collected" from="LevelManager" to="LevelManager" method="_on_coin_collected"]
 
 [editable path="Environment/DeathArea"]
