@@ -1,10 +1,4 @@
-res://Objects/Checkpoint/checkpoint.tscn
 res://Levels/level_1.tscn
-res://Objects/Player/player.tscn
-res://Objects/FinishPoint/finish_point.tscn
-res://GUI/YouWinScreen/you_win_screen.tscn
-res://Objects/DeathArea/death_area.tscn
-res://GUI/NotificationContainer/notification_container.tscn
 res://Objects/Checkpoint/checkpoint.gd
-res://Objects/LevelManager/level_manager.gd
-res://GUI/NotificationContainer/notification_container.gd
+res://Objects/Coin/coin.tscn
+res://Objects/Coin/coin.gd

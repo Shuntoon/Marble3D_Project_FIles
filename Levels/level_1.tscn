@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=13 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
+[ext_resource type="PackedScene" uid="uid://rmfu1qod2ckx" path="res://Objects/Coin/coin.tscn" id="3_epqc5"]
 [ext_resource type="PackedScene" uid="uid://bgrc2rjf8lbos" path="res://GUI/YouWinScreen/you_win_screen.tscn" id="3_v8hvd"]
 [ext_resource type="Script" path="res://Objects/LevelManager/level_manager.gd" id="4_30rf7"]
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
@@ -32,10 +33,6 @@ script = ExtResource("4_30rf7")
 
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="Player" parent="Environment" instance=ExtResource("1_08apw")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
@@ -46,6 +43,15 @@ environment = SubResource("Environment_bi56o")
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 use_collision = true
 size = Vector3(12.3692, 0.0833458, 18.6034)
+
+[node name="Player" parent="Environment" instance=ExtResource("1_08apw")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
+
+[node name="CoinCollection" type="Node3D" parent="Environment"]
+
+[node name="Coin" parent="Environment/CoinCollection" instance=ExtResource("3_epqc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.644823, -3.1379)
 
 [node name="FinishPoint" parent="Environment" instance=ExtResource("2_i4n55")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)

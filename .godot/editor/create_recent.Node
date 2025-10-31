@@ -1,9 +1,9 @@
 Node3D
+CollisionShape3D
+Area3D
 Label
 MarginContainer
 Marker3D
-CollisionShape3D
-Area3D
 Node
 CanvasLayer
 Button
