@@ -1,7 +1,9 @@
+Panel
 Label
 Node3D
 CollisionShape3D
 Area3D
+MeshInstance3D
 MarginContainer
 Marker3D
 Node
@@ -16,5 +18,4 @@ Camera3D
 SpringArm3D
 CSGBox3D
 GraphNode
-MeshInstance3D
 RigidBody3D
