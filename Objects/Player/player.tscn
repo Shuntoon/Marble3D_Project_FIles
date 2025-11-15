@@ -56,4 +56,5 @@ margin = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.48927)
 current = true
 
+[connection signal="ability_collected" from="." to="Marble" method="_on_player_ability_collected"]
 [connection signal="level_finished" from="." to="." method="_on_level_finished"]

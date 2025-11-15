@@ -1,24 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsf3yjbqcr2hx"]
+[gd_scene load_steps=4 format=3 uid="uid://dsf3yjbqcr2hx"]
 
 [sub_resource type="GDScript" id="GDScript_jnn3s"]
 script/source = "extends Control
 class_name PlayerHUD
 
 @onready var coins_collected_label: Label = $CoinsCollectedLabel
+@onready var ability_collected_label: Label = $AbilityCollectedLabel
 
 var level_manager : LevelManager
+var player : Player 
 
 func _ready() -> void:
 	level_manager = get_tree().get_first_node_in_group(\"level_manager\")
 	level_manager.connect(\"coin_collected\", _on_coin_collected)
 	coins_collected_label.text = \"Coins: %s/%s\" % [level_manager.coins_collected, level_manager.max_coins]
 	
+	player = get_tree().get_first_node_in_group(\"player\")
+	
 func _on_coin_collected() -> void:
 	coins_collected_label.text = \"Coins: %s/%s\" % [level_manager.coins_collected, level_manager.max_coins]
+
+func _process(delta: float) -> void:
+	update_current_ability_text()
+	
+func update_current_ability_text() -> void:
+	var marble : Marble = player.marble
+	
+	match marble.current_ability:
+		Marble.ABILITIES.NONE:
+			ability_collected_label.text = \"Current Ability: None\"
+			
+		Marble.ABILITIES.SPRING:
+			ability_collected_label.text = \"Current Ability: Spring\"
+			
+		Marble.ABILITIES.PROPELLER:
+			ability_collected_label.text = \"Current Ability: Propeller\"
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_ciapx"]
 font_size = 48
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.917647)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3bf8"]
+font_size = 42
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.917647)
 
@@ -40,3 +65,19 @@ offset_right = 72.0
 offset_bottom = 55.0
 text = "Coins: 1/5"
 label_settings = SubResource("LabelSettings_ciapx")
+
+[node name="AbilityCollectedLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -111.5
+offset_top = -102.0
+offset_right = 111.5
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Current Ability: Spring"
+label_settings = SubResource("LabelSettings_n3bf8")

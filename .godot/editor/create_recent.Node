@@ -1,8 +1,8 @@
-Panel
-Label
 Node3D
 CollisionShape3D
 Area3D
+Panel
+Label
 MeshInstance3D
 MarginContainer
 Marker3D

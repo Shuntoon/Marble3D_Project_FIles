@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=15 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
+[ext_resource type="PackedScene" uid="uid://bb48dtjcpbkyc" path="res://Objects/AbilityCollectable/ability_collectable.tscn" id="7_qlnut"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
@@ -71,6 +72,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356581, -2.64162)
 
 [node name="Coin2" parent="Environment/Coins" instance=ExtResource("3_epqc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68257, 0.356581, -2.64162)
+
+[node name="Abilities" type="Node3D" parent="Environment"]
+
+[node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_qlnut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87775, 0.457045, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
