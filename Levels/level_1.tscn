@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
 [ext_resource type="PackedScene" uid="uid://rmfu1qod2ckx" path="res://Objects/Coin/coin.tscn" id="3_epqc5"]
 [ext_resource type="PackedScene" uid="uid://bgrc2rjf8lbos" path="res://GUI/YouWinScreen/you_win_screen.tscn" id="3_v8hvd"]
-[ext_resource type="Script" path="res://Objects/LevelManager/level_manager.gd" id="4_30rf7"]
+[ext_resource type="Script" uid="uid://ctxef67lvy0r7" path="res://Objects/LevelManager/level_manager.gd" id="4_30rf7"]
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
@@ -77,6 +77,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68257, 0.356581, -2.64162)
 
 [node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_qlnut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87775, 0.457045, 0)
+
+[node name="AbilityCollectable2" parent="Environment/Abilities" instance=ExtResource("7_qlnut")]
+transform = Transform3D(1, 0, 0, 0, 0.996415, 0.08459959, 0, -0.08459959, 0.996415, 2.87775, 0.457045, 1.6537226)
+ability = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

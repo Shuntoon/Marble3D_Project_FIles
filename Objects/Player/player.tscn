@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu6csgumns604"]
+[gd_scene load_steps=13 format=3 uid="uid://bu6csgumns604"]
 
 [ext_resource type="Script" uid="uid://cr2jeykskuefd" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
 [ext_resource type="Script" uid="uid://wct8ay4bvd7j" path="res://Objects/Player/Marble.gd" id="1_hjpva"]
 [ext_resource type="Script" uid="uid://3hccxdhyhcp8" path="res://Objects/Player/player.gd" id="1_ixp5m"]
 [ext_resource type="Script" uid="uid://o72puq4nwd38" path="res://Objects/Player/GroundCheckRay.gd" id="1_mi88b"]
 [ext_resource type="Texture2D" uid="uid://cawh40fx4qkcu" path="res://icon.svg" id="2_qcvt7"]
+[ext_resource type="PackedScene" uid="uid://b5o8dlut0ra5b" path="res://Objects/RotationComponent/rotation_component.tscn" id="4_jllbl"]
+[ext_resource type="Script" uid="uid://dd3ijxktfk8km" path="res://Objects/RotationComponent/rotation_component.gd" id="5_0mj7g"]
+[ext_resource type="PackedScene" uid="uid://68cg7x6rlm1b" path="res://Art/Meshes/Propeller.glb" id="6_u7612"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qcqbx"]
 bounce = 0.5
@@ -20,9 +23,23 @@ albedo_texture = ExtResource("2_qcvt7")
 [node name="Player" type="Node3D" groups=["player"]]
 script = ExtResource("1_ixp5m")
 
+[node name="PropellerTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
 [node name="GroundCheckRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.4, 0)
 script = ExtResource("1_mi88b")
+
+[node name="PropellerBase" type="Node3D" parent="."]
+visible = false
+
+[node name="Propeller" parent="PropellerBase" instance=ExtResource("6_u7612")]
+transform = Transform3D(0.155, 0, 0, 0, 0.155, 0, 0, 0, 0.155, 0, 0.14000475, 0)
+
+[node name="RotationComponent" parent="PropellerBase" instance=ExtResource("4_jllbl")]
+script = ExtResource("5_0mj7g")
+rotation_speed = 500.0
 
 [node name="Marble" type="RigidBody3D" parent="."]
 collision_layer = 2
@@ -58,3 +75,4 @@ current = true
 
 [connection signal="ability_collected" from="." to="Marble" method="_on_player_ability_collected"]
 [connection signal="level_finished" from="." to="." method="_on_level_finished"]
+[connection signal="timeout" from="PropellerTimer" to="Marble" method="_on_propeller_timer_timeout"]
