@@ -1,7 +1,1 @@
-res://GUI/PlayerHud/player_hud.tscn
-res://Objects/Player/player.tscn
-res://Objects/Player/Marble.gd
-res://Objects/Player/player.gd
 res://Objects/AbilityCollectable/ability_collectable.tscn
-res://Objects/AbilityCollectable/ability_collectable.gd
-res://Levels/level_1.tscn
