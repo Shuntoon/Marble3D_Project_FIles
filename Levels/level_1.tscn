@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=16 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
 [ext_resource type="PackedScene" uid="uid://bb48dtjcpbkyc" path="res://Objects/AbilityCollectable/ability_collectable.tscn" id="7_qlnut"]
+[ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_62b6n"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
@@ -82,6 +83,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87775, 0.457045, 0)
 transform = Transform3D(1, 0, 0, 0, 0.996415, 0.08459959, 0, -0.08459959, 0.996415, 2.87775, 0.457045, 1.6537226)
 ability = 2
 
+[node name="MovingPlatforms" type="Node3D" parent="Environment"]
+
+[node name="MovingPlatform" parent="Environment/MovingPlatforms" instance=ExtResource("8_62b6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9483333, 0.97820497, 0)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="YouWinScreen" parent="CanvasLayer" instance=ExtResource("3_v8hvd")]
@@ -97,3 +103,4 @@ visible = false
 [connection signal="coin_collected" from="LevelManager" to="LevelManager" method="_on_coin_collected"]
 
 [editable path="Environment/DeathArea"]
+[editable path="Environment/MovingPlatforms/MovingPlatform"]
