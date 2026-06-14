@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5ciq07o8dkx0"]
+[gd_scene load_steps=24 format=3 uid="uid://5ciq07o8dkx0"]
 
 [ext_resource type="Script" uid="uid://ctxef67lvy0r7" path="res://Objects/LevelManager/level_manager.gd" id="1_1soli"]
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="2_4pbjs"]
@@ -33,6 +33,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnelu"]
+size = Vector3(57.7666, 1, 123.237305)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ttnk"]
 size = Vector3(2.7666016, 1, 1.2480469)
 
 [node name="LevelTemplate" type="Node3D"]
@@ -61,6 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.319641, 3.8617458, -57.022
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="CollisionShape3D" parent="Environment/DeathArea/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.651157, 0, -25.386719)
 shape = SubResource("BoxShape3D_fnelu")
 
 [node name="Checkpoints" type="Node3D" parent="Environment"]
@@ -70,9 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.045872, 3.9920979, -23.334
 
 [node name="Coins" type="Node3D" parent="Environment"]
 unique_name_in_owner = true
-
-[node name="Coin" parent="Environment/Coins" instance=ExtResource("6_jcvcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356581, -2.64162)
 
 [node name="Coin2" parent="Environment/Coins" instance=ExtResource("6_jcvcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4646845, 4.269936, -47.226902)
@@ -90,10 +91,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.333907, 4.269936, -46.84003
 
 [node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_0ttnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.042873, 5.42792, 3.2399988)
-
-[node name="AbilityCollectable2" parent="Environment/Abilities" instance=ExtResource("7_0ttnk")]
-transform = Transform3D(1, 0, 0, 0, 0.996415, 0.08459959, 0, -0.08459959, 0.996415, 2.87775, 0.457045, 1.6537226)
-ability = 2
 
 [node name="MovingPlatforms" type="Node3D" parent="Environment"]
 
@@ -141,9 +138,6 @@ transform = Transform3D(2.158, 0, 0, 0, 0.257, 0, 0, 0, 1.978, 10.12032, 3.22705
 [node name="block-grass-overhang-large-tall5" parent="Environment/Platforms" instance=ExtResource("11_16yl7")]
 transform = Transform3D(4.567075, 0, 0, 0, 0.2569998, 0, 0, 0, 3.706893, 10.12032, 3.2270575, -45.318893)
 
-[node name="block-grass-overhang-large-tall6" parent="Environment/Platforms" instance=ExtResource("11_16yl7")]
-transform = Transform3D(4.567075, 0, 0, 0, 0.2569998, 0, 0, 0, 3.706893, 10.12032, 0.17836809, 20.264141)
-
 [node name="block-grass-overhang-large-tall3" parent="Environment/Platforms" instance=ExtResource("11_16yl7")]
 transform = Transform3D(1.8338611, 0, 0, 0, 0.63263047, 0, 0, 0, 1.7557523, 8.380127, 0, 13.001069)
 
@@ -172,23 +166,7 @@ transform = Transform3D(0.35875058, 0, 0, 0, 0.23524792, 0, 0, 0, 0.30484137, 0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46122837, 0)
 
 [node name="CollisionShape3D" parent="Environment/DeathSpinner/barrel2/spike-block-wide2/DeathArea/Area3D" index="0"]
-shape = SubResource("BoxShape3D_fnelu")
-
-[node name="barrel3" parent="Environment/DeathSpinner" instance=ExtResource("12_knkse")]
-transform = Transform3D(2.8423295, 0, 0, 0, 4.5226645, 0, 0, 0, 2.6795728, 9.922942, 0.7966671, 20.023426)
-
-[node name="RotationComponent" type="Node" parent="Environment/DeathSpinner/barrel3"]
-script = ExtResource("14_cnrwi")
-metadata/_custom_type_script = "uid://dd3ijxktfk8km"
-
-[node name="spike-block-wide2" parent="Environment/DeathSpinner/barrel3" instance=ExtResource("15_knkse")]
-transform = Transform3D(0.35875058, 0, 0, 0, 0.23524792, 0, 0, 0, 0.30484137, 0.70152855, 0, 0)
-
-[node name="DeathArea" parent="Environment/DeathSpinner/barrel3/spike-block-wide2" instance=ExtResource("4_5yfph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46122837, 0)
-
-[node name="CollisionShape3D" parent="Environment/DeathSpinner/barrel3/spike-block-wide2/DeathArea/Area3D" index="0"]
-shape = SubResource("BoxShape3D_fnelu")
+shape = SubResource("BoxShape3D_0ttnk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -209,4 +187,3 @@ visible = false
 [editable path="Environment/MovingPlatforms/MovingPlatform2"]
 [editable path="Environment/MovingPlatforms/MovingPlatform3"]
 [editable path="Environment/DeathSpinner/barrel2/spike-block-wide2/DeathArea"]
-[editable path="Environment/DeathSpinner/barrel3/spike-block-wide2/DeathArea"]
