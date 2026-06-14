@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_c7v82"]
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
-[ext_resource type="PackedScene" uid="uid://bb48dtjcpbkyc" path="res://Objects/AbilityCollectable/ability_collectable.tscn" id="7_qlnut"]
 [ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_62b6n"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
 
@@ -26,16 +25,23 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnelu"]
-size = Vector3(21.0367, 1, 38.8911)
+size = Vector3(30.307148, 1, 54.345818)
 
-[sub_resource type="PrismMesh" id="PrismMesh_62b6n"]
+[sub_resource type="BoxMesh" id="BoxMesh_f4pg2"]
 
 [sub_resource type="Curve3D" id="Curve3D_t8ffa"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 14),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.125, 0, 2.23, -0.51504374, 0.06993866, -1.2267504, 0.51504374, -0.06993866, 1.2267504, 4.61, 0, 2, 0.42884827, -0.48732662, -1.5362358, -0.42884827, 0.48732662, 1.5362358, 6.2, 0, 6.175, 0, 0, 0, 0, 0, 0, 2.105, 0, 9.215),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
-point_count = 3
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_62b6n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.125, 0, 2.23, -0.51504374, 0.06993866, -1.2267504, 0.51504374, -0.06993866, 1.2267504, -2.5052185, -9.536743e-07, 5.461151, 0.42884827, -0.48732662, -1.5362358, -0.42884827, 0.48732662, 1.5362358, -2.6419802, -9.536743e-07, 8.945635, 0, 0, 0, 0, 0, 0, 0.5896187, 0, 11.567083),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="LevelTemplate" type="Node3D"]
 
@@ -52,27 +58,24 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_bi56o")
 
-[node name="Floor" type="CSGBox3D" parent="Environment"]
-use_collision = true
-size = Vector3(12.3692, 0.0833458, 18.6034)
-
 [node name="Player" parent="Environment" instance=ExtResource("1_08apw")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.525509, 0.628504, 7.106111)
 
 [node name="FinishPoint" parent="Environment" instance=ExtResource("2_i4n55")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5871997, 0.47963905, 31.119823)
 
 [node name="DeathArea" parent="Environment" instance=ExtResource("4_c7v82")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="CollisionShape3D" parent="Environment/DeathArea/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4680076, 0, 7.727359)
 shape = SubResource("BoxShape3D_fnelu")
 
 [node name="Checkpoints" type="Node3D" parent="Environment"]
 
 [node name="Checkpoint" parent="Environment/Checkpoints" instance=ExtResource("5_smqo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.0037)
+transform = Transform3D(0.77, 0, 0, 0, 0.77, 0, 0, 0, 0.77, -7.26005, 0.4996252, -10.158157)
 
 [node name="Coins" type="Node3D" parent="Environment"]
 unique_name_in_owner = true
@@ -85,44 +88,107 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68257, 0.356581, -2.64162)
 
 [node name="Abilities" type="Node3D" parent="Environment"]
 
-[node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_qlnut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87775, 0.457045, 0)
-
-[node name="AbilityCollectable2" parent="Environment/Abilities" instance=ExtResource("7_qlnut")]
-transform = Transform3D(1, 0, 0, 0, 0.996415, 0.08459959, 0, -0.08459959, 0.996415, 2.87775, 0.457045, 1.6537226)
-ability = 2
-
 [node name="MovingPlatforms" type="Node3D" parent="Environment"]
 
 [node name="MovingPlatform" parent="Environment/MovingPlatforms" instance=ExtResource("8_62b6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9483333, 0.97820497, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.6152387, 0.97820497, -10.177385)
+
+[node name="Endpoint" parent="Environment/MovingPlatforms/MovingPlatform" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.033707)
+
+[node name="MovingPlatform2" parent="Environment/MovingPlatforms" instance=ExtResource("8_62b6n")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.4757383, 0.97820497, -6.4201097)
+
+[node name="Endpoint" parent="Environment/MovingPlatforms/MovingPlatform2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.9766192)
+
+[node name="MovingPlatform3" parent="Environment/MovingPlatforms" instance=ExtResource("8_62b6n")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -9.633899, 0.97820497, -2.6847415)
+
+[node name="Endpoint" parent="Environment/MovingPlatforms/MovingPlatform3" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.9766192)
+
+[node name="MovingPlatform4" parent="Environment/MovingPlatforms" instance=ExtResource("8_62b6n")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -3.731162, 0.97820497, 1.2903888)
+
+[node name="Endpoint" parent="Environment/MovingPlatforms/MovingPlatform4" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.9766192)
 
 [node name="Platforms" type="Node3D" parent="Environment"]
 
 [node name="SimpleMesh" type="CSGMesh3D" parent="Environment/Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4576766, 0.46557975, 0)
+transform = Transform3D(2.1880486, 0, 0, 0, 0.27330667, 0, 0, 0, 2.0023398, 4.4934845, 0.46557975, 2.9924335)
 use_collision = true
-mesh = SubResource("PrismMesh_62b6n")
+mesh = SubResource("BoxMesh_f4pg2")
 
-[node name="PolygonMesh" type="CSGPolygon3D" parent="Environment/Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5383534, 0, 0)
-polygon = PackedVector2Array(0.10445404, 0.7744619, 0.6017093, 0.7637518, 0.96064657, 1.2189748, 1, 0, 0, 0)
-depth = 2.75
+[node name="SimpleMesh2" type="CSGMesh3D" parent="Environment/Platforms"]
+transform = Transform3D(2.1880486, 0, 0, 0, 0.27330667, 0, 0, 0, 2.0023398, 4.4934845, 0.46557975, -1.7962987)
+use_collision = true
+mesh = SubResource("BoxMesh_f4pg2")
 
-[node name="SpinMesh" type="CSGPolygon3D" parent="Environment/Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8457882, 0.015108168, 2.548126)
-polygon = PackedVector2Array(0, 0, 0, 1, 1.2550955, 0.9603452, 1, 0)
+[node name="SimpleMesh3" type="CSGMesh3D" parent="Environment/Platforms"]
+transform = Transform3D(2.1880486, 0, 0, 0, 0.27330667, 0, 0, 0, 2.0023398, -11.3501625, 0.46557975, 15.200844)
+use_collision = true
+mesh = SubResource("BoxMesh_f4pg2")
+
+[node name="StartingPlatform" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5133476, 0.015109122, 7.090848)
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.019532919, 0.43108195, 1.3674781, 0.48585147, 1.122041, -0.011298716)
 mode = 1
-spin_degrees = 273.0
-spin_sides = 18
+spin_degrees = 360.0
+spin_sides = 10
+
+[node name="StartingPlatform4" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1.4721982, 0, 0, 0, 1, 0, 0, 0, 1.4219388, -6.7348747, 0.015109122, 31.02401)
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.019532919, 0.43108195, 1.3674781, 0.48585147, 1.122041, -0.011298716)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+
+[node name="StartingPlatform2" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5133476, 0.015109122, -6.4227448)
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.019532919, 0.43108195, 1.3674781, 0.48585147, 1.122041, -0.011298716)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+
+[node name="StartingPlatform3" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2671394, 0.015109122, -10.150207)
+use_collision = true
+polygon = PackedVector2Array(0, 0, -0.019532919, 0.43108195, 1.3674781, 0.48585147, 1.122041, -0.011298716)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
 
 [node name="PathMesh" type="Node3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.146818, -9.536743e-07, 4.3065767)
 
 [node name="Path3D" type="Path3D" parent="Environment/Platforms/PathMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.020917, -4.7683716e-07, 5.5111227)
 curve = SubResource("Curve3D_t8ffa")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Environment/Platforms/PathMesh/Path3D"]
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="PathMesh2" type="Node3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.146818, -9.536743e-07, 17.713701)
+
+[node name="Path3D" type="Path3D" parent="Environment/Platforms/PathMesh2"]
+curve = SubResource("Curve3D_62b6n")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Environment/Platforms/PathMesh2/Path3D"]
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
@@ -151,3 +217,6 @@ visible = false
 
 [editable path="Environment/DeathArea"]
 [editable path="Environment/MovingPlatforms/MovingPlatform"]
+[editable path="Environment/MovingPlatforms/MovingPlatform2"]
+[editable path="Environment/MovingPlatforms/MovingPlatform3"]
+[editable path="Environment/MovingPlatforms/MovingPlatform4"]
