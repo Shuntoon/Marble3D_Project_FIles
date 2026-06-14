@@ -25,3 +25,10 @@ func _on_checkpoint_reached(position) -> void:
 func _on_coin_collected() -> void:
 	coins_collected += 1
 	pass # Replace with function body.
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
+		
+	if event.is_action_pressed("reset"):
+		get_tree().reload_current_scene()
