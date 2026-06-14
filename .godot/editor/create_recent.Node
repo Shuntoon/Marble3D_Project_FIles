@@ -1,4 +1,6 @@
+RotationComponent
 Node3D
+Node
 Path3D
 CSGPolygon3D
 CSGMesh3D
@@ -9,6 +11,4 @@ Marker3D
 Timer
 CSGBox3D
 AnimatableBody3D
-RotationComponent
-Node
 Panel
