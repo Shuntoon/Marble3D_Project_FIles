@@ -21,7 +21,8 @@ transform = Transform3D(0.365, 0, 0, 0, 0.365, 0, 0, 0, 0.365, 0, 0, 0)
 [node name="CollectionArea" type="Area3D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionArea"]
+[node name="CollectionCollision" type="CollisionShape3D" parent="CollectionArea"]
+unique_name_in_owner = true
 shape = SubResource("SphereShape3D_g0env")
 
 [node name="RotationComponent" type="Node" parent="."]
