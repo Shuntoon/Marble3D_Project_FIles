@@ -1,4 +1,3 @@
-res://Levels/level_1.tscn
-res://Objects/LevelManager/level_manager.gd
 res://Levels/level_template.tscn
-res://Levels/level_2.tscn
+res://Objects/AbilityCollectable/ability_collectable.tscn
+res://Objects/AbilityCollectable/ability_collectable.gd
