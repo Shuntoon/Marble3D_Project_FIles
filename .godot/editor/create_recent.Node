@@ -1,3 +1,5 @@
+Control
+Camera3D
 RotationComponent
 Node3D
 Node
@@ -10,5 +12,3 @@ CSGSphere3D
 Marker3D
 Timer
 CSGBox3D
-AnimatableBody3D
-Panel

@@ -1,3 +1,3 @@
-res://Levels/level_template.tscn
-res://Objects/AbilityCollectable/ability_collectable.tscn
-res://Objects/AbilityCollectable/ability_collectable.gd
+res://GUI/MainMenu/main_menu.tscn
+res://Levels/main_menu_level.tscn
+res://GUI/MainMenu/main_menu_ui.tscn
