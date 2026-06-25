@@ -1,3 +1,8 @@
+Label
+Button
+Panel
+VBoxContainer
+MarginContainer
 Control
 Camera3D
 RotationComponent
@@ -7,8 +12,3 @@ Path3D
 CSGPolygon3D
 CSGMesh3D
 CollisionShape3D
-Area3D
-CSGSphere3D
-Marker3D
-Timer
-CSGBox3D

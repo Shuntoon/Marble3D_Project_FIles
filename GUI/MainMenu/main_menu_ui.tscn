@@ -1,4 +1,63 @@
-[gd_scene format=3 uid="uid://bwumbt1tjm5wa"]
+[gd_scene load_steps=5 format=3 uid="uid://bwumbt1tjm5wa"]
+
+[sub_resource type="GDScript" id="GDScript_r6o7y"]
+script/source = "extends Control
+class_name MainMenu
+
+@onready var credits_screen: Control = $CreditsScreen
+@onready var base_screen: Control = $BaseScreen
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_play_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Levels/level_1.tscn\")
+	pass # Replace with function body.
+
+func _on_options_button_pressed() -> void:
+	print(\"options pressed\")
+	pass # Replace with function body.
+
+
+func _on_credits_button_pressed() -> void:
+	base_screen.hide()
+	credits_screen.show()
+	pass # Replace with function body.
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+	pass # Replace with function body.
+
+
+func _on_credits_back_button_pressed() -> void:
+	credits_screen.hide()
+	base_screen.show()
+	pass # Replace with function body.
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o4gc"]
+font_size = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83pva"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.068463035, 0.13489628, 0.20808762, 0.8980392)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmvay"]
+font_size = 31
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +66,116 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_r6o7y")
+
+[node name="BaseScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TitleLabel" type="Label" parent="BaseScreen/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Marble 3D"
+label_settings = SubResource("LabelSettings_0o4gc")
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="BaseScreen/MarginContainer"]
+custom_minimum_size = Vector2(420, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="Button" parent="BaseScreen/MarginContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play
+"
+
+[node name="OptionsButton" type="Button" parent="BaseScreen/MarginContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options
+"
+
+[node name="CreditsButton" type="Button" parent="BaseScreen/MarginContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="BaseScreen/MarginContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="CreditsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGPanel" type="Panel" parent="CreditsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 105.0
+offset_top = 21.0
+offset_right = -105.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_83pva")
+
+[node name="CreditsBackButton" type="Button" parent="CreditsScreen/BGPanel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 33.0
+offset_right = 113.0
+offset_bottom = 90.0
+text = "Back"
+
+[node name="CreditsLabel" type="Label" parent="CreditsScreen/BGPanel"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 50.0
+offset_right = 635.0
+offset_bottom = 73.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_bmvay")
+horizontal_alignment = 1
+
+[node name="CreditsLabel2" type="Label" parent="CreditsScreen/BGPanel"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 271.0
+offset_right = 635.0
+offset_bottom = 315.0
+text = "Content"
+label_settings = SubResource("LabelSettings_bmvay")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BaseScreen/MarginContainer/ButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="BaseScreen/MarginContainer/ButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="BaseScreen/MarginContainer/ButtonContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="BaseScreen/MarginContainer/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsScreen/BGPanel/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]

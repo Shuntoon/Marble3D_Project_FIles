@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bprx684m45fys"]
+[gd_scene load_steps=21 format=3 uid="uid://bprx684m45fys"]
 
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="3_qd5hx"]
 [ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_xgvb8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://6qqbe8nv3084" path="res://Art/Kenny/GLB format/block-grass-overhang-large-tall.glb" id="11_qdlga"]
 [ext_resource type="PackedScene" uid="uid://cld45bsu1egjh" path="res://Art/Kenny/GLB format/block-grass-hexagon.glb" id="12_hh3si"]
 [ext_resource type="PackedScene" uid="uid://dodp5mhxvebu0" path="res://Art/Kenny/GLB format/barrel.glb" id="13_p1t5w"]
+[ext_resource type="PackedScene" uid="uid://bwumbt1tjm5wa" path="res://GUI/MainMenu/main_menu_ui.tscn" id="14_ewy7x"]
 [ext_resource type="Script" uid="uid://dd3ijxktfk8km" path="res://Objects/RotationComponent/rotation_component.gd" id="14_h0jpx"]
 [ext_resource type="PackedScene" uid="uid://camkcwt7njfud" path="res://Art/Kenny/GLB format/spike-block-wide.glb" id="15_pgau5"]
 
@@ -159,6 +160,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46122837, 0)
 shape = SubResource("BoxShape3D_0ttnk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("14_ewy7x")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.31883976, 0.2436015, -0.9159692, -0.029587664, 0.96337813, 0.2665091, 0.9473466, 0.11207508, -0.29995567, -6.4651604, 10.209341, -35.46525)
