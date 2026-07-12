@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfage2a4ka13h"]
+[gd_scene load_steps=19 format=3 uid="uid://bfage2a4ka13h"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_smqo5"]
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="7_lxb2m"]
 [ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_62b6n"]
+[ext_resource type="PackedScene" uid="uid://5ciq07o8dkx0" path="res://Levels/level_2.tscn" id="9_62b6n"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
@@ -205,6 +206,7 @@ path_joined = false
 
 [node name="YouWinScreen" parent="CanvasLayer" instance=ExtResource("3_v8hvd")]
 visible = false
+level_scene = ExtResource("9_62b6n")
 
 [node name="NotificationContainer" parent="CanvasLayer" instance=ExtResource("7_lxb2m")]
 visible = false

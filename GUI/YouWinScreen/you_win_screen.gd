@@ -3,11 +3,18 @@ class_name YouWinScreen
 
 @onready var level_manager: LevelManager
 @onready var coins_collected_label: Label = %CoinsCollectedLabel
+@onready var continue_button: Button = %ContinueButton
+
+@export var level_scene : PackedScene
 
 
 func _ready() -> void:
 	level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.connect("level_finished", _on_level_finished)
+	
+	if level_scene == null:
+		push_error("No level scene in You Win Screen to transition to!")
+		continue_button.hide()
 
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()
@@ -15,6 +22,7 @@ func _on_restart_button_pressed() -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	get_tree().change_scene_to_packed(level_scene)
 	pass # Replace with function body.
 
 

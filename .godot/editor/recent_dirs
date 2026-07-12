@@ -1,3 +1,4 @@
+res://Levels
 res://GUI/MainMenu
 res://Objects/MovingPlatform
 res://Objects/RotationComponent
@@ -11,4 +12,3 @@ res://Objects/LevelManager
 res://GUI/YouWinScreen
 res://Objects/FinishPoint
 res://Objects/Player
-res://Levels

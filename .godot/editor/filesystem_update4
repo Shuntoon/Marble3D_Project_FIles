@@ -1,4 +1,6 @@
-res://GUI/MainMenu/main_menu.tscn
-res://Levels/main_menu_level.tscn
 res://GUI/MainMenu/main_menu_ui.tscn
-res://GUI/MainMenu/main_menu_ui.gd
+res://GUI/MainMenu/level_select_button.tscn
+res://GUI/MainMenu/level_select_button.gd
+res://GUI/YouWinScreen/you_win_screen.tscn
+res://GUI/YouWinScreen/you_win_screen.gd
+res://Levels/level_1.tscn

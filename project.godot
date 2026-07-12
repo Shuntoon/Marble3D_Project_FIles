@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Marble3D"
-run/main_scene="res://Levels/level_template.tscn"
+run/main_scene="uid://bprx684m45fys"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

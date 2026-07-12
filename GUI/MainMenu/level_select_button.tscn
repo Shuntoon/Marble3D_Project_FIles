@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://q015g1oxh6gb"]
+
+[ext_resource type="Script" uid="uid://bq6xw0knqs6ee" path="res://GUI/MainMenu/level_select_button.gd" id="1_qgotp"]
+
+[node name="LevelSelectButton" type="Button"]
+custom_minimum_size = Vector2(0, 96)
+text = "Level"
+script = ExtResource("1_qgotp")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
