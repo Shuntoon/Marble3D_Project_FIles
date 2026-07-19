@@ -1,10 +1,10 @@
 Button
-VBoxContainer
-ScrollContainer
-MarginContainer
-HBoxContainer
 Label
+VBoxContainer
+MarginContainer
 Panel
+ScrollContainer
+HBoxContainer
 ColorRect
 Control
 Camera3D

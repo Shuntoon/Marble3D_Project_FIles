@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdrqb0nmsmrmb"]
+
+[sub_resource type="GDScript" id="GDScript_8h1mk"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_resume_button_pressed() -> void:
+	hide()
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _on_retry_button_pressed() -> void:
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Levels/main_menu_level.tscn\")
+	pass # Replace with function body.
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_8h1mk"]
+font_size = 48
+
+[node name="PauseScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_8h1mk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 248
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 248
+theme_override_constants/margin_bottom = 128
+
+[node name="BGPanel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BGPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BGPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="PauseLabel" type="Label" parent="MarginContainer/BGPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_8h1mk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/BGPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="RetryButton" type="Button" parent="MarginContainer/BGPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/BGPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/BGPanel/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BGPanel/MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BGPanel/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

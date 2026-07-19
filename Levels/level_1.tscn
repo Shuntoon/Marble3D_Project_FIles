@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfage2a4ka13h"]
+[gd_scene load_steps=20 format=3 uid="uid://bfage2a4ka13h"]
 
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="1_08apw"]
 [ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="2_i4n55"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_62b6n"]
 [ext_resource type="PackedScene" uid="uid://5ciq07o8dkx0" path="res://Levels/level_2.tscn" id="9_62b6n"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="9_mqhbe"]
+[ext_resource type="PackedScene" uid="uid://cdrqb0nmsmrmb" path="res://GUI/PauseScreen/pause_screen.tscn" id="12_rs4xw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,7 +45,7 @@ _data = {
 }
 point_count = 5
 
-[node name="LevelTemplate" type="Node3D"]
+[node name="LevelTemplate2" type="Node3D"]
 
 [node name="LevelManager" type="Node" parent="." groups=["level_manager"]]
 unique_name_in_owner = true
@@ -212,6 +213,9 @@ level_scene = ExtResource("9_62b6n")
 visible = false
 
 [node name="PlayerHUD" parent="CanvasLayer" instance=ExtResource("9_mqhbe")]
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("12_rs4xw")]
+visible = false
 
 [connection signal="checkpoint_reached" from="LevelManager" to="LevelManager" method="_on_checkpoint_reached"]
 [connection signal="checkpoint_reached" from="LevelManager" to="CanvasLayer/NotificationContainer" method="_on_level_manager_checkpoint_reached"]

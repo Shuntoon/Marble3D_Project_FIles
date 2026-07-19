@@ -11,10 +11,12 @@ var max_coins : int
 
 @onready var player: Node3D = %Player
 @onready var coins: Node3D = %Coins
+@onready var pause_screen: Control = $"../CanvasLayer/PauseScreen"
 
 func _ready() -> void:
 	max_coins = coins.get_child_count()
 	spawn_location = player.global_position
+	get_tree().paused = false
 
 
 func _on_checkpoint_reached(position) -> void:
@@ -28,7 +30,9 @@ func _on_coin_collected() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
-		get_tree().quit()
+		pause_screen.show()
+		get_tree().paused = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()

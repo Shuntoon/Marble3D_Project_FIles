@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://nu3sfvutp5i4"]
+[gd_scene load_steps=21 format=3 uid="uid://nu3sfvutp5i4"]
 
 [ext_resource type="Script" uid="uid://ctxef67lvy0r7" path="res://Objects/LevelManager/level_manager.gd" id="1_4autd"]
 [ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="2_2i2tq"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="10_0y6re"]
 [ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="11_euhwv"]
 [ext_resource type="PackedScene" uid="uid://dodp5mhxvebu0" path="res://Art/Kenny/GLB format/barrel.glb" id="12_2i2tq"]
+[ext_resource type="PackedScene" uid="uid://cdrqb0nmsmrmb" path="res://GUI/PauseScreen/pause_screen.tscn" id="12_862ii"]
 [ext_resource type="PackedScene" uid="uid://dgpu3yu7yt5a0" path="res://Art/Meshes/Platform.glb" id="13_43g2l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
@@ -146,6 +147,9 @@ visible = false
 visible = false
 
 [node name="PlayerHUD" parent="CanvasLayer" instance=ExtResource("11_euhwv")]
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("12_862ii")]
+visible = false
 
 [node name="barrel2" parent="." instance=ExtResource("12_2i2tq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6228876, 0.041672707, -4.3699536)
