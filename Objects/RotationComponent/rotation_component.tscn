@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b5o8dlut0ra5b"]
+
+[node name="RotationComponent" type="Node"]

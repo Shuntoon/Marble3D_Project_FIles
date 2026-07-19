@@ -1,0 +1,9 @@
+res://GUI/MainMenu/level_select_button.tscn
+res://GUI/PauseScreen/pause_screen.gd
+res://GUI/PauseScreen/pause_screen.tscn
+res://Levels/level_2.tscn
+res://Objects/LevelManager/level_manager.gd
+res://Levels/level_template.tscn
+res://Levels/level_1.tscn
+res://Levels/main_menu_level.tscn
+res://GUI/MainMenu/main_menu_ui.tscn

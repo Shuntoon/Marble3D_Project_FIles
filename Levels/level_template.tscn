@@ -1,0 +1,165 @@
+[gd_scene load_steps=21 format=3 uid="uid://nu3sfvutp5i4"]
+
+[ext_resource type="Script" uid="uid://ctxef67lvy0r7" path="res://Objects/LevelManager/level_manager.gd" id="1_4autd"]
+[ext_resource type="PackedScene" uid="uid://bu6csgumns604" path="res://Objects/Player/player.tscn" id="2_2i2tq"]
+[ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="3_43g2l"]
+[ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_862ii"]
+[ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_8n5jf"]
+[ext_resource type="PackedScene" uid="uid://rmfu1qod2ckx" path="res://Objects/Coin/coin.tscn" id="6_51okg"]
+[ext_resource type="PackedScene" uid="uid://bb48dtjcpbkyc" path="res://Objects/AbilityCollectable/ability_collectable.tscn" id="7_e3s6t"]
+[ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_kfrvy"]
+[ext_resource type="PackedScene" uid="uid://bgrc2rjf8lbos" path="res://GUI/YouWinScreen/you_win_screen.tscn" id="9_syhni"]
+[ext_resource type="PackedScene" uid="uid://ddku4y1uu4sjk" path="res://GUI/NotificationContainer/notification_container.tscn" id="10_0y6re"]
+[ext_resource type="PackedScene" uid="uid://dsf3yjbqcr2hx" path="res://GUI/PlayerHud/player_hud.tscn" id="11_euhwv"]
+[ext_resource type="PackedScene" uid="uid://dodp5mhxvebu0" path="res://Art/Kenny/GLB format/barrel.glb" id="12_2i2tq"]
+[ext_resource type="PackedScene" uid="uid://cdrqb0nmsmrmb" path="res://GUI/PauseScreen/pause_screen.tscn" id="12_862ii"]
+[ext_resource type="PackedScene" uid="uid://dgpu3yu7yt5a0" path="res://Art/Meshes/Platform.glb" id="13_43g2l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0pcy8"]
+sky_material = SubResource("ProceduralSkyMaterial_xm8n4")
+
+[sub_resource type="Environment" id="Environment_bi56o"]
+background_mode = 2
+sky = SubResource("Sky_0pcy8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnelu"]
+size = Vector3(21.0367, 1, 38.8911)
+
+[sub_resource type="PrismMesh" id="PrismMesh_62b6n"]
+
+[sub_resource type="Curve3D" id="Curve3D_t8ffa"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.26025867, 0, 3.1205645, 0, 0, 0, 0, 0, 0, 2.1813574, 0, 4.354089),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="LevelTemplate" type="Node3D"]
+
+[node name="LevelManager" type="Node" parent="." groups=["level_manager"]]
+unique_name_in_owner = true
+script = ExtResource("1_4autd")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_bi56o")
+
+[node name="Floor" type="CSGBox3D" parent="Environment"]
+use_collision = true
+size = Vector3(12.3692, 0.0833458, 18.6034)
+
+[node name="Player" parent="Environment" instance=ExtResource("2_2i2tq")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628504, 0)
+
+[node name="FinishPoint" parent="Environment" instance=ExtResource("3_43g2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.4653)
+
+[node name="DeathArea" parent="Environment" instance=ExtResource("4_862ii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CollisionShape3D" parent="Environment/DeathArea/Area3D" index="0"]
+shape = SubResource("BoxShape3D_fnelu")
+
+[node name="Checkpoints" type="Node3D" parent="Environment"]
+
+[node name="Checkpoint" parent="Environment/Checkpoints" instance=ExtResource("5_8n5jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.0037)
+
+[node name="Coins" type="Node3D" parent="Environment"]
+unique_name_in_owner = true
+
+[node name="Coin" parent="Environment/Coins" instance=ExtResource("6_51okg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356581, -2.64162)
+
+[node name="Coin2" parent="Environment/Coins" instance=ExtResource("6_51okg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68257, 0.356581, -2.64162)
+
+[node name="Abilities" type="Node3D" parent="Environment"]
+
+[node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_e3s6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87775, 0.457045, 0)
+
+[node name="AbilityCollectable2" parent="Environment/Abilities" instance=ExtResource("7_e3s6t")]
+transform = Transform3D(1, 0, 0, 0, 0.996415, 0.08459959, 0, -0.08459959, 0.996415, 2.87775, 0.457045, 1.6537226)
+ability = 2
+
+[node name="MovingPlatforms" type="Node3D" parent="Environment"]
+
+[node name="MovingPlatform" parent="Environment/MovingPlatforms" instance=ExtResource("8_kfrvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9483333, 0.97820497, 0)
+
+[node name="Platforms" type="Node3D" parent="Environment"]
+
+[node name="SimpleMesh" type="CSGMesh3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5097647, 0.46557975, 3.7706451)
+use_collision = true
+mesh = SubResource("PrismMesh_62b6n")
+
+[node name="PolygonMesh" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.896895, 1.9073486e-06, 1.6244748)
+polygon = PackedVector2Array(0.10445404, 0.7744619, 0.6017093, 0.7637518, 0.96064657, 1.2189748, 1, 0, 0, 0)
+depth = 2.75
+
+[node name="SpinMesh" type="CSGPolygon3D" parent="Environment/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1091547, 0.015109122, 6.887475)
+polygon = PackedVector2Array(0, 0, 0, 1, 1.2550955, 0.9603452, 1, 0)
+mode = 1
+spin_degrees = 273.0
+spin_sides = 18
+
+[node name="PathMesh" type="Node3D" parent="Environment/Platforms"]
+
+[node name="Path3D" type="Path3D" parent="Environment/Platforms/PathMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.341856, 0, 3.8121834)
+curve = SubResource("Curve3D_t8ffa")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Environment/Platforms/PathMesh/Path3D"]
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="YouWinScreen" parent="CanvasLayer" instance=ExtResource("9_syhni")]
+visible = false
+
+[node name="NotificationContainer" parent="CanvasLayer" instance=ExtResource("10_0y6re")]
+visible = false
+
+[node name="PlayerHUD" parent="CanvasLayer" instance=ExtResource("11_euhwv")]
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("12_862ii")]
+visible = false
+
+[node name="barrel2" parent="." instance=ExtResource("12_2i2tq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6228876, 0.041672707, -4.3699536)
+
+[node name="Platform" parent="." instance=ExtResource("13_43g2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.639328, 0, -0.6444466)
+
+[connection signal="checkpoint_reached" from="LevelManager" to="LevelManager" method="_on_checkpoint_reached"]
+[connection signal="checkpoint_reached" from="LevelManager" to="CanvasLayer/NotificationContainer" method="_on_level_manager_checkpoint_reached"]
+[connection signal="coin_collected" from="LevelManager" to="LevelManager" method="_on_coin_collected"]
+
+[editable path="Environment/DeathArea"]
+[editable path="Environment/MovingPlatforms/MovingPlatform"]

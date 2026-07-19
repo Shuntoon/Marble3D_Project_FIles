@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cayxwk30vhqju"]
+
+[ext_resource type="Script" path="res://Objects/FinishPoint/finish_point.gd" id="1_40uva"]
+[ext_resource type="PackedScene" uid="uid://dd5f46iuo73pm" path="res://Art/Meshes/FinishPad.glb" id="1_socig"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hr8sr"]
+radius = 0.790824
+
+[node name="FinishPoint" type="Node3D"]
+script = ExtResource("1_40uva")
+
+[node name="FinishPad" parent="." instance=ExtResource("1_socig")]
+
+[node name="FinishArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563553, 0)
+collision_mask = 2
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 25.0
+linear_damp_space_override = 3
+linear_damp = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea"]
+shape = SubResource("SphereShape3D_hr8sr")
+
+[connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]

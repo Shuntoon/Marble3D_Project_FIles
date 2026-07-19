@@ -1,0 +1,174 @@
+[gd_scene load_steps=21 format=3 uid="uid://bprx684m45fys"]
+
+[ext_resource type="PackedScene" uid="uid://cayxwk30vhqju" path="res://Objects/FinishPoint/finish_point.tscn" id="3_qd5hx"]
+[ext_resource type="PackedScene" uid="uid://duv6tk13a156o" path="res://Objects/DeathArea/death_area.tscn" id="4_xgvb8"]
+[ext_resource type="PackedScene" uid="uid://edx7hn7q6wh7" path="res://Objects/Checkpoint/checkpoint.tscn" id="5_166rw"]
+[ext_resource type="PackedScene" uid="uid://rmfu1qod2ckx" path="res://Objects/Coin/coin.tscn" id="6_k8cvp"]
+[ext_resource type="PackedScene" uid="uid://bb48dtjcpbkyc" path="res://Objects/AbilityCollectable/ability_collectable.tscn" id="7_242ut"]
+[ext_resource type="PackedScene" uid="uid://bx72d6nfiisgj" path="res://Objects/MovingPlatform/moving_platform.tscn" id="8_oycoe"]
+[ext_resource type="PackedScene" uid="uid://cjselydphhmm0" path="res://Art/Kenny/GLB format/block-grass-overhang-low-large.glb" id="9_on0cl"]
+[ext_resource type="PackedScene" uid="uid://fgkd0onfe41p" path="res://Art/Kenny/GLB format/block-grass-large-slope.glb" id="10_a5a6b"]
+[ext_resource type="PackedScene" uid="uid://6qqbe8nv3084" path="res://Art/Kenny/GLB format/block-grass-overhang-large-tall.glb" id="11_qdlga"]
+[ext_resource type="PackedScene" uid="uid://cld45bsu1egjh" path="res://Art/Kenny/GLB format/block-grass-hexagon.glb" id="12_hh3si"]
+[ext_resource type="PackedScene" uid="uid://dodp5mhxvebu0" path="res://Art/Kenny/GLB format/barrel.glb" id="13_p1t5w"]
+[ext_resource type="PackedScene" uid="uid://bwumbt1tjm5wa" path="res://GUI/MainMenu/main_menu_ui.tscn" id="14_ewy7x"]
+[ext_resource type="Script" uid="uid://dd3ijxktfk8km" path="res://Objects/RotationComponent/rotation_component.gd" id="14_h0jpx"]
+[ext_resource type="PackedScene" uid="uid://camkcwt7njfud" path="res://Art/Kenny/GLB format/spike-block-wide.glb" id="15_pgau5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm8n4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0pcy8"]
+sky_material = SubResource("ProceduralSkyMaterial_xm8n4")
+
+[sub_resource type="Environment" id="Environment_bi56o"]
+background_mode = 2
+sky = SubResource("Sky_0pcy8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnelu"]
+size = Vector3(57.7666, 1, 123.237305)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ttnk"]
+size = Vector3(2.7666016, 1, 1.2480469)
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_pfkbk"]
+frustum_focus_distance = 0.01
+
+[node name="LevelTemplate" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_bi56o")
+
+[node name="FinishPoint" parent="Environment" instance=ExtResource("3_qd5hx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.319641, 3.8617458, -57.022057)
+
+[node name="DeathArea" parent="Environment" instance=ExtResource("4_xgvb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CollisionShape3D" parent="Environment/DeathArea/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.651157, 0, -25.386719)
+shape = SubResource("BoxShape3D_fnelu")
+
+[node name="Checkpoints" type="Node3D" parent="Environment"]
+
+[node name="Checkpoint" parent="Environment/Checkpoints" instance=ExtResource("5_166rw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.045872, 3.9920979, -23.334078)
+
+[node name="Coins" type="Node3D" parent="Environment"]
+unique_name_in_owner = true
+
+[node name="Coin2" parent="Environment/Coins" instance=ExtResource("6_k8cvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4646845, 4.269936, -47.226902)
+
+[node name="Coin3" parent="Environment/Coins" instance=ExtResource("6_k8cvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4646845, 4.269936, -43.526543)
+
+[node name="Coin4" parent="Environment/Coins" instance=ExtResource("6_k8cvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.333907, 4.269936, -43.526543)
+
+[node name="Coin5" parent="Environment/Coins" instance=ExtResource("6_k8cvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.333907, 4.269936, -46.84003)
+
+[node name="Abilities" type="Node3D" parent="Environment"]
+
+[node name="AbilityCollectable" parent="Environment/Abilities" instance=ExtResource("7_242ut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.042873, 5.42792, 3.2399988)
+
+[node name="MovingPlatforms" type="Node3D" parent="Environment"]
+
+[node name="MovingPlatform" parent="Environment/MovingPlatforms" instance=ExtResource("8_oycoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12857, 0.97820497, 8.201646)
+
+[node name="CSGBox3D" parent="Environment/MovingPlatforms/MovingPlatform" index="0"]
+visible = false
+
+[node name="Endpoint" parent="Environment/MovingPlatforms/MovingPlatform" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25191, 0)
+
+[node name="block-grass-overhang-low-large2" parent="Environment/MovingPlatforms/MovingPlatform" instance=ExtResource("9_on0cl")]
+
+[node name="MovingPlatform2" parent="Environment/MovingPlatforms" instance=ExtResource("8_oycoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.381392, 3.480264, -28.911034)
+
+[node name="CSGBox3D" parent="Environment/MovingPlatforms/MovingPlatform2" index="0"]
+visible = false
+
+[node name="block-grass-overhang-low-large2" parent="Environment/MovingPlatforms/MovingPlatform2" instance=ExtResource("9_on0cl")]
+
+[node name="MovingPlatform3" parent="Environment/MovingPlatforms" instance=ExtResource("8_oycoe")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.399851, 3.480264, -36.937546)
+
+[node name="CSGBox3D" parent="Environment/MovingPlatforms/MovingPlatform3" index="0"]
+visible = false
+
+[node name="block-grass-overhang-low-large2" parent="Environment/MovingPlatforms/MovingPlatform3" instance=ExtResource("9_on0cl")]
+
+[node name="block-grass-large-slope2" parent="Environment" instance=ExtResource("10_a5a6b")]
+transform = Transform3D(-2.1475048, 0, 0.07202892, 0, 1, 0, -0.081259966, 0, -1.9035504, 9.765558, 4.4514484, -16.419361)
+
+[node name="Platforms" type="Node3D" parent="Environment"]
+
+[node name="block-grass-overhang-large-tall2" parent="Environment/Platforms" instance=ExtResource("11_qdlga")]
+transform = Transform3D(2.158, 0, 0, 0, 0.257, 0, 0, 0, 1.978, 8.021651, 4.4183908, 3.4523716)
+
+[node name="block-grass-overhang-large-tall4" parent="Environment/Platforms" instance=ExtResource("11_qdlga")]
+transform = Transform3D(2.158, 0, 0, 0, 0.257, 0, 0, 0, 1.978, 10.12032, 3.2270575, -23.290297)
+
+[node name="block-grass-overhang-large-tall7" parent="Environment/Platforms" instance=ExtResource("11_qdlga")]
+transform = Transform3D(2.158, 0, 0, 0, 0.257, 0, 0, 0, 1.978, 10.12032, 3.2270575, -57.31052)
+
+[node name="block-grass-overhang-large-tall5" parent="Environment/Platforms" instance=ExtResource("11_qdlga")]
+transform = Transform3D(4.567075, 0, 0, 0, 0.2569998, 0, 0, 0, 3.706893, 10.12032, 3.2270575, -45.318893)
+
+[node name="block-grass-overhang-large-tall3" parent="Environment/Platforms" instance=ExtResource("11_qdlga")]
+transform = Transform3D(1.8338611, 0, 0, 0, 0.63263047, 0, 0, 0, 1.7557523, 8.380127, 0, 13.001069)
+
+[node name="block-grass-hexagon2" parent="Environment/Platforms" instance=ExtResource("12_hh3si")]
+transform = Transform3D(1.4369917, 0, 0, 0, 1, 0, 0, 0, 1.2699759, 9.948456, 5.3698153, -1.6654)
+
+[node name="block-grass-hexagon3" parent="Environment/Platforms" instance=ExtResource("12_hh3si")]
+transform = Transform3D(1.5988876, 0, 0, 0, 1, 0, 0, 0, 1.4450611, 7.079384, 5.3698153, -6.636505)
+
+[node name="block-grass-hexagon4" parent="Environment/Platforms" instance=ExtResource("12_hh3si")]
+transform = Transform3D(1.5988876, 0, 0, 0, 1, 0, 0, 0, 1.4450611, 10.180306, 5.3698144, -10.4194355)
+
+[node name="DeathSpinner" type="Node3D" parent="Environment"]
+
+[node name="barrel2" parent="Environment/DeathSpinner" instance=ExtResource("13_p1t5w")]
+transform = Transform3D(2.8423295, 0, 0, 0, 4.5226645, 0, 0, 0, 2.6795728, 9.922942, 3.8453565, -45.55961)
+
+[node name="RotationComponent" type="Node" parent="Environment/DeathSpinner/barrel2"]
+script = ExtResource("14_h0jpx")
+metadata/_custom_type_script = "uid://dd3ijxktfk8km"
+
+[node name="spike-block-wide2" parent="Environment/DeathSpinner/barrel2" instance=ExtResource("15_pgau5")]
+transform = Transform3D(0.35875058, 0, 0, 0, 0.23524792, 0, 0, 0, 0.30484137, 0.70152855, 0, 0)
+
+[node name="DeathArea" parent="Environment/DeathSpinner/barrel2/spike-block-wide2" instance=ExtResource("4_xgvb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46122837, 0)
+
+[node name="CollisionShape3D" parent="Environment/DeathSpinner/barrel2/spike-block-wide2/DeathArea/Area3D" index="0"]
+shape = SubResource("BoxShape3D_0ttnk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("14_ewy7x")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.31883976, 0.2436015, -0.9159692, -0.029587664, 0.96337813, 0.2665091, 0.9473466, 0.11207508, -0.29995567, -6.4651604, 10.209341, -35.46525)
+attributes = SubResource("CameraAttributesPhysical_pfkbk")
+
+[editable path="Environment/DeathArea"]
+[editable path="Environment/MovingPlatforms/MovingPlatform"]
+[editable path="Environment/MovingPlatforms/MovingPlatform2"]
+[editable path="Environment/MovingPlatforms/MovingPlatform3"]
+[editable path="Environment/DeathSpinner/barrel2/spike-block-wide2/DeathArea"]

@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx72d6nfiisgj"]
+
+[sub_resource type="GDScript" id="GDScript_p7k4r"]
+script/source = "extends AnimatableBody3D
+class_name MovingPlatform
+
+@export var move_duration : float = 3.0
+
+@onready var pause_timer: Timer = $PauseTimer
+@onready var endpoint: Marker3D = $Endpoint
+
+var moving_to_endpoint : bool = false
+var start_position : Vector3
+var player_touching : bool = false
+var last_position : Vector3
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	start_position = global_position
+	endpoint.hide()
+	pause_timer.start()
+	pass # Replace with function body.
+
+func move_platform() -> void:
+	var tween = create_tween()
+	if moving_to_endpoint:
+		tween.tween_property(self, \"global_position\", endpoint.global_position, move_duration).set_ease(Tween.EASE_IN_OUT)
+	else:
+		tween.tween_property(self, \"global_position\", start_position, move_duration).set_ease(Tween.EASE_IN_OUT)
+		
+	await tween.finished
+	pause_timer.start()
+	
+func _physics_process(delta: float) -> void:
+	if player_touching:
+		var player : Player = get_tree().get_first_node_in_group(\"player\")
+		var marble : Marble = player.marble
+		var platform_movement = global_position - last_position
+		marble.global_position += platform_movement
+		
+	last_position = global_position
+
+
+func _on_pause_timer_timeout() -> void:
+	moving_to_endpoint = !moving_to_endpoint
+	move_platform()
+	pass # Replace with function body.
+
+
+func _on_marble_detection_area_body_entered(body: Node3D) -> void:
+	if body.owner.is_in_group(\"player\"):
+		player_touching = true
+	pass # Replace with function body.
+
+
+func _on_marble_detection_area_body_exited(body: Node3D) -> void:
+	if body.owner.is_in_group(\"player\"):
+		player_touching = false
+	pass # Replace with function body.
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7k4r"]
+albedo_color = Color(0.7104485, 0.09824918, 0.09824918, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7k4r"]
+size = Vector3(2.4064941, 0.5546875, 2.9316406)
+
+[node name="MovingPlatform" type="AnimatableBody3D"]
+script = SubResource("GDScript_p7k4r")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(2.185791, 0.23461914, 2.4472656)
+material = SubResource("StandardMaterial3D_p7k4r")
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Endpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.0091925)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Endpoint"]
+radius = 0.11632666
+
+[node name="MarbleDetectionArea" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarbleDetectionArea"]
+shape = SubResource("BoxShape3D_p7k4r")
+
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
+[connection signal="body_entered" from="MarbleDetectionArea" to="." method="_on_marble_detection_area_body_entered"]
+[connection signal="body_exited" from="MarbleDetectionArea" to="." method="_on_marble_detection_area_body_exited"]

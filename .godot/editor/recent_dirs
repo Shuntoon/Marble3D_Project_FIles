@@ -1,0 +1,15 @@
+res://GUI/PauseScreen
+res://Levels
+res://GUI/MainMenu
+res://Objects/MovingPlatform
+res://Objects/RotationComponent
+res://Objects/AbilityCollectable
+res://GUI/PlayerHud
+res://Objects/Coin
+res://GUI/NotificationContainer
+res://Objects/Checkpoint
+res://Objects/DeathArea
+res://Objects/LevelManager
+res://GUI/YouWinScreen
+res://Objects/FinishPoint
+res://Objects/Player

@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://bu6csgumns604"]
+
+[ext_resource type="Script" uid="uid://cr2jeykskuefd" path="res://Objects/Player/Camera.gd" id="1_d1vl8"]
+[ext_resource type="Script" uid="uid://wct8ay4bvd7j" path="res://Objects/Player/Marble.gd" id="1_hjpva"]
+[ext_resource type="Script" uid="uid://3hccxdhyhcp8" path="res://Objects/Player/player.gd" id="1_ixp5m"]
+[ext_resource type="Script" uid="uid://o72puq4nwd38" path="res://Objects/Player/GroundCheckRay.gd" id="1_mi88b"]
+[ext_resource type="Texture2D" uid="uid://cawh40fx4qkcu" path="res://icon.svg" id="2_qcvt7"]
+[ext_resource type="PackedScene" uid="uid://b5o8dlut0ra5b" path="res://Objects/RotationComponent/rotation_component.tscn" id="4_jllbl"]
+[ext_resource type="Script" uid="uid://dd3ijxktfk8km" path="res://Objects/RotationComponent/rotation_component.gd" id="5_0mj7g"]
+[ext_resource type="PackedScene" uid="uid://68cg7x6rlm1b" path="res://Art/Meshes/Propeller.glb" id="6_u7612"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qcqbx"]
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_55v3s"]
+radius = 0.123988
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pii2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwf1o"]
+albedo_texture = ExtResource("2_qcvt7")
+
+[node name="Player" type="Node3D" groups=["player"]]
+script = ExtResource("1_ixp5m")
+
+[node name="PropellerTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[node name="GroundCheckRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.4, 0)
+script = ExtResource("1_mi88b")
+
+[node name="PropellerBase" type="Node3D" parent="."]
+visible = false
+
+[node name="Propeller" parent="PropellerBase" instance=ExtResource("6_u7612")]
+transform = Transform3D(0.155, 0, 0, 0, 0.155, 0, 0, 0, 0.155, 0, 0.14000475, 0)
+
+[node name="RotationComponent" parent="PropellerBase" instance=ExtResource("4_jllbl")]
+script = ExtResource("5_0mj7g")
+rotation_speed = 500.0
+
+[node name="Marble" type="RigidBody3D" parent="."]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_qcqbx")
+gravity_scale = 0.9
+can_sleep = false
+linear_damp = 0.8
+script = ExtResource("1_hjpva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marble"]
+shape = SubResource("SphereShape3D_55v3s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marble"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("SphereMesh_8pii2")
+surface_material_override/0 = SubResource("StandardMaterial3D_uwf1o")
+
+[node name="CameraContainer" type="Node3D" parent="."]
+script = ExtResource("1_d1vl8")
+
+[node name="HRotation" type="Node3D" parent="CameraContainer"]
+
+[node name="VRotation" type="Node3D" parent="CameraContainer/HRotation"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraContainer/HRotation/VRotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+spring_length = 1.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer/HRotation/VRotation/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.48927)
+current = true
+
+[connection signal="ability_collected" from="." to="Marble" method="_on_player_ability_collected"]
+[connection signal="level_finished" from="." to="." method="_on_level_finished"]
+[connection signal="timeout" from="PropellerTimer" to="Marble" method="_on_propeller_timer_timeout"]
